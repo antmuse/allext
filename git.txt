@@ -1,0 +1,117 @@
+1.build ssh-key
+ssh-keygen -t rsa -C "antmuse@live.cn" -f "/d/App/SSH/id_github"
+ssh-keygen -b 2048 -t rsa -C "antmuse@live.cn" -f "/d/App/SSH/id_github"
+
+2.load ssh for git
+eval $(ssh-agent -s)
+ssh-add /d/App/SSH/id_github
+
+3.config
+git config --global init.defaultBranch main
+git config --global pull.rebase true
+git config --global user.email antmuse@qq.com
+git config --global user.name antmuse@live.cn
+git config --global --unset user.email
+
+git config --global --list
+git config --local --list
+
+git config --global http.proxy http://allnet.org:7890
+git config --global https.proxy https://allnet.org:7890
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+4.init bare proj
+git init --bare --shared
+
+5.不常用
+//force flush
+git reset --hard origin/dev
+git reset --hard HEAD
+git reset --hard HEAD^^
+git fetch --all && git reset --hard origin/main && git pull
+git fetch --all && git reset --hard origin/master && git pull
+git fetch --all && git reset --hard origin/docking && git pull
+git remote set-url --add origin https://gitee.com/antmuse/AntEngine.git
+git remote set-url --add origin antmuse@nuc.cn:/home/antmuse/all/git/AntEngine
+git remote set-url origin antmuse@nuc.cn:/home/antmuse/all/git/doc
+git remote add origin git@github.com:antmuse/AntNet.git
+// 删除所有remote origin
+git remote rm origin
+//删除github文件夹,本地保留（删除文件夹要使用-r 参数）
+git rm --cached -r ./Build/Temp/
+//删除github文件,本地保留
+git rm --cached test.txt
+
+6. clone/pull/add/push
+git clone ant@47.93.13.77:/home/ant/code/gitdoc
+git clone git@github.com:antmuse/AntEngine.git --recursive
+git clone antmuse@192.168.1.102:/home/antmuse/all/code/remoter
+git submodule init && git submodule update
+git submodule add git@github.com:antmuse/AntEngine.git Depend/AntEngine
+git submodule update --init --recursive
+git submodule foreach 'git pull'
+git submodule foreach 'git pull origin master'
+git pull
+git status
+git log
+git remote -v
+git branch -r
+git branch -f master HEAD~2
+git reset HEAD~1
+git reset --soft  HEAD~3
+git revert master
+git branch -a
+git switch master
+git checkout master
+git checkout origin/docking
+git tag
+git checkout tagName
+git cherry-pick commit1 commit5 commit3
+
+
+touch .gitignore
+git add -u
+git add .
+
+git commit -m "delete file"
+git commit -m "delete file" --amend
+git commit --amend "fix delete file"
+
+
+git push
+git push -u origin master
+git push origin master
+
+
+7. rebase/merge
+git merge dev
+git merge --squash dev
+git merge --no-ff -m "with dev" dev
+git rebase master
+//修改冲突文件后add & continue rebase
+git add -u
+git rebase --continue
+git rebase --abort
+git rebase --skip
+git rebase -i dev
+git rebase -i HEAD~3
+git rebase -i dev  #fix commits with pick/edit/squash
+
+
+8. stash
+git stash list
+git stash save "v1"
+git stash apply
+git stash apply stash@{id} 
+git stash drop stash@{id} 
+git stash clear
+
+
+9. other
+git log --graph --pretty=oneline --abbrev-commit
+
+恢复被误删的分支:
+git log --branches="被误删的分支名"
+git branch dev branch-id

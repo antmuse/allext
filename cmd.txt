@@ -1,0 +1,71 @@
+ldd bin.out
+
+#允许非root用户的指定程序绑定1024以下端口
+setcap cap_net_bind_service=+eip /home/ant/app/website/AntTest.bin
+#不允许非root用户的指定程序绑定1024以下端口
+setcap -r /home/ant/app/website/AntTest.bin
+
+#core file
+echo "/tmp/core/%e-%p-%t.core" > /proc/sys/kernel/core_pattern
+echo "2" > /proc/sys/fs/suid_dumpable
+
+
+debug:
+set follow-fork-mode parent
+set follow-fork-mode child
+set print pretty on
+set print union on
+set print elements 0
+
+gdb -tui --args /home/ant/code/nginx-1.20.1/objs/nginx -c /home/ant/code/nginx-1.20.1/conf/nginx.conf
+gdb -tui #file out.bin
+         #set args v1 v2 vn
+         #start
+         #run
+         #save breakpoints bpos.cfg
+         #source bpos.cfg
+         #b ngx_start_worker_processes
+
+
+strace -p 88
+find ./ -name */.gz
+tar -czvf a.tar.gz ./files
+tar -xzvf a.tar.gz -C outdir
+
+dpkg -i aaa.deb
+ps -ef | grep nginx | grep -v grep
+
+#查看进程下的线程占用cpu量
+ps -H -eo user,pid,ppid,tid,time,%cpu,cmd --sort=%cpu
+top -H -c -p 149047
+
+#修改文件属性
+chattr -ia
+
+tcpdump tcp port 8080 -w /tmp/xxxx.cap
+tcpdump -i any tcp port 8080 and host 192.168.1.1 -w /tmp/xxxx.cap
+
+
+perf record -p $pid -g -e cycles -e cs #进程采样
+perf record -a -g -e cycles -e cs #系统整体采样
+sudo perf record -e cpu-clock -g -p 28591
+perf script -i perf.data &> perf.unfold
+./FlameGraph/stackcollapse-perf.pl perf.unfold &> perf.folded
+./FlameGraph/flamegraph.pl perf.folded > perf.svg
+
+# usage: 随便收集60秒
+sudo perf record -F 99 -a -g --sleep 60
+perf script -i perf.data &> perf.unfold
+./FlameGraph/stackcollapse-perf.pl perf.unfold &> perf.folded
+./FlameGraph/flamegraph.pl perf.folded > perf.svg
+
+# 查看进程打开的文件句柄数
+lsof -n|awk ' {print $2}'|sort|uniq -c |sort -nr|more
+
+#ufw
+sudo ufw status numbered
+sudo ufw reload
+sudo ufw enable
+sudo ufw delete 299
+sudo ufw allow 22/tcp
+sudo ufw allow 50000:60000/tcp

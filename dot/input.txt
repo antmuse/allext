@@ -1,0 +1,17 @@
+digraph graphname{ 
+    a -> {b c};
+    c -> e;
+    b -> d;
+
+    subgraph cluster_bc {
+        bgcolor=red;
+        b;
+        c;
+    }
+
+    subgraph cluster_de {
+        label="Block"
+        d;
+        e;
+    }
+}

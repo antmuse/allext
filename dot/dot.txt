@@ -1,0 +1,29 @@
+digraph "/home/antmuse/all/code/bit_flags/out.bin; 5493.4 MB" {
+node [width=0.375,height=0.25];
+Legend [shape=box,fontsize=24,shape=plaintext,label="/home/antmuse/all/code/bit_flags/out.bin\lTotal MB: 5493.4\lFocusing on: 5493.4\lDropped nodes with <= 27.5 abs(MB)\lDropped edges with <= 5.5 MB\l"];
+N1 [label="FuncTrigger\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N2 [label="__libc_start_main@@GLIBC_2.2.5\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N3 [label="_start\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N4 [label="app\nFlagsHandler\nupdate\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N5 [label="imalloc\n(inline)\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N6 [label="imalloc_body\n(inline)\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N7 [label="je_malloc_default\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N8 [label="je_prof_backtrace\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N9 [label="je_prof_tctx_create\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N10 [label="main\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N11 [label="prof_alloc_prep\n(inline)\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N12 [label="prof_backtrace_impl\n5493.4 (100.0%)\r",shape=box,fontsize=58.0];
+N13 [label="void*\nfallback_impl\n0.0 (0.0%)\rof 5493.4 (100.0%)\r",shape=box,fontsize=8.0];
+N4 -> N1 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N2 -> N10 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N5 -> N6 [label=5493.4, weight=100000, style="setlinewidth(2.000000),dashed"];
+N7 -> N5 [label=5493.4, weight=100000, style="setlinewidth(2.000000),dashed"];
+N9 -> N8 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N1 -> N13 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N11 -> N9 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N6 -> N11 [label=5493.4, weight=100000, style="setlinewidth(2.000000),dashed"];
+N13 -> N7 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N10 -> N4 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N3 -> N2 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+N8 -> N12 [label=5493.4, weight=100000, style="setlinewidth(2.000000)"];
+}

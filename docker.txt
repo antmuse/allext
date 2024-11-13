@@ -1,0 +1,14 @@
+docker run -itd --name dk.test ubuntu /bin/bash
+docker exec -it 412c78006cbf /bin/bash
+docker start 412c78006cbf
+docker start dk.test
+docker stop 412c78006cbf
+docker stop dk.test
+docker ps -a
+docker images
+
+docker rmi hello-world
+docker kill $(docker ps -a -q)
+//删除所有已经停止的容器
+docker rm $(docker ps -a -q)
+
